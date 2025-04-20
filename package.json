@@ -1,0 +1,25 @@
+{
+	"name": "pynch-nexa",
+	"version": "1.10.0",
+	"main": "./src/main.js",
+	"scripts": {
+		"format": "prettier -w .",
+		"package": "companion-module-build"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bitfocus/companion-module-pynch-nexa.git"
+	},
+	"dependencies": {
+		"@companion-module/base": "~1.11.2",
+		"axios": "^1.8.4",
+		"ws": "^8.18.1"
+	},
+	"devDependencies": {
+		"@companion-module/tools": "^2.1.1",
+		"prettier": "^3.4.2"
+	},
+	"prettier": "@companion-module/tools/.prettierrc.json",
+	"packageManager": "yarn@1.22.22"
+}
