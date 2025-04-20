@@ -27,3 +27,11 @@ Load a `clip` from the dropdown and loads it on the chosen `output` (PGM1).
 ![Screenshot 2025-04-13 at 10 04 17](https://github.com/user-attachments/assets/0c25abd2-502c-468b-8333-bece366d51d9)
 
 Changes the the `status` of the chosen output (PGM1) : options are `Play`, `Stop` or `Pause`. 
+
+## Feedbacks
+
+Feedback is available for both inputs and outputs.
+
+## Presets
+
+Presets are available for both inputs and outputs.
