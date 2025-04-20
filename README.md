@@ -2,6 +2,8 @@
 
 This module interacts with a [Pynch Nexa](https://github.com/pynch-tv/Nexa) REST API service, that in its turn talks to either a [EVS XT](https://evs.com/products/live-production-servers/xt-via)'s or [HyperDeck](https://www.blackmagicdesign.com/products/hyperdeckstudio/models)'s.
 
+OpenAPI for Nexa [here](https://app.swaggerhub.com/apis/pynch/Nexa/1.0.0).
+
 ## Connection
 
 Each connection manages a single audioVideoServer. When you have multiple devices that you want to control, make a new connection for each.
