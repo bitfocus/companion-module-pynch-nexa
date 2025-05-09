@@ -24,21 +24,9 @@ module.exports = {
 				self.log("debug", `Request ${request}`)
 				var response = await axios.get(`${serviceUrl}`)
 				{
-					var eventsUri = self.getUriFromLinkHeader(response, "events")
-					self.log("debug", `uri to events ${eventsUri}`)
-					var dataUri = self.getUriFromLinkHeader(response, "data")
+					var dataUri = self.getUriFromLinkHeader(response, "collection")
 					self.log("debug", `uri to servers ${dataUri}`)
 				};
-
-				request = eventsUri
-				self.log("debug", `Request ${request}`)
-				var response = await axios.get(eventsUri)
-				{
-					var subscribeUri = self.getUriFromEvents(response.data.events, "ws")
-					self.log("debug", `uri to subscribe ${subscribeUri}`)
-
-					self.initEvents(subscribeUri)
-				} 
 	
 				request = `${dataUri}/${serverId}`
 				self.log("debug", `Request ${request}`)
@@ -72,8 +60,23 @@ module.exports = {
 					self.log("debug", `uri to playlists ${playlistsUri}`)
 					self.log("debug", `uri to outputs ${outputsUri}`)
 					self.log("debug", `uri to inputs ${inputsUri}`)
+
+					var eventsUri = self.getUriFromLinkHeader(response, "events")
+					self.log("debug", `uri to events ${eventsUri}`)
 				}
 	
+				if (eventsUri)
+				{
+					self.log("debug", `Request ${request}`)
+					var response = await axios.get(eventsUri)
+					{
+						var subscribeUri = self.getUriFromEvents(response.data.events, "ws")
+						self.log("debug", `uri to subscribe ${subscribeUri}`)
+
+						self.initEvents(subscribeUri)
+					} 
+				}
+
 				if (outputsUri)
 				{
 					request = `${outputsUri}?f=json&properties=id,name`
