@@ -83,8 +83,9 @@ async function initEvents (subscribeUri)
                             switch (data.state)
                             {
                                 case "play":
+                                case "playing":
                                 case "start":
-                                    {
+                                {
                                         self.log("debug", `${topic.id} play` )
                                         const output = self.outputs.find(output => output.id === topic.id)
                                         output.status = 'play'
@@ -93,7 +94,9 @@ async function initEvents (subscribeUri)
                                     break
                                 case "stop":
                                 case "stopped":
-                                    {
+                                case "ready":
+                                case "live":
+                                {
                                         self.log("debug", `${topic.id} stop` )
                                         const output = self.outputs.find(output => output.id === topic.id)
                                         output.status = 'stop'
