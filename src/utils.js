@@ -9,10 +9,10 @@ module.exports = {
     },
 
     getUriFromLinkHeader(response, relation) {
-        var links = response.headers.link.split(",").map(function (value) { return value.trim();})
+        const links = response.headers.link.split(",").map(function (value) { return value.trim();})
         for (const link of links) {
-            var elements = link.split(";").map(function (value) { return value.trim(); })
-            var index = elements.indexOf(`rel="${relation}"`)
+            const elements = link.split(";").map(function (value) { return value.trim(); })
+            let index = elements.indexOf(`rel="${relation}"`)
             if (index >= 0) {
                 index = elements.findIndex((element) => element.startsWith('<'))
                 if (index >= 0)

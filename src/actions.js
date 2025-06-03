@@ -42,11 +42,11 @@ module.exports = {
 				],
 				callback: async (event) => {
 
-					var serviceUrl = self.config.serviceUrl
-					var serverId = self.config.serverId
+					const serviceUrl = self.config.serviceUrl
+					const serverId = self.config.serverId
 
-					var outputId = event.options.outputId
-					var clipId = event.options.clipId
+					const outputId = event.options.outputId
+					const clipId = event.options.clipId
 
 					self.log("info", `Action Load: ${serviceUrl}/servers/${serverId}/outputs/${outputId}` )
 					self.log("info", `Action Load: clipId ${clipId}` )
@@ -56,7 +56,7 @@ module.exports = {
 						lock.enable()
 
 						body = { "clip" : { "id": clipId } }
-						var response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
+						const response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
 						self.log("info", `Load response ${response.status}` )
 
 						lock.disable()
@@ -92,12 +92,12 @@ module.exports = {
 					},
 				],
 				callback: async (event) => {
-					var serviceUrl = self.config.serviceUrl
-					var serverId = self.config.serverId
+					const serviceUrl = self.config.serviceUrl
+					const serverId = self.config.serverId
 		
-					var outputId = event.options.outputId
-					var status = "play"
-					var speed = event.options.speed
+					const outputId = event.options.outputId
+					const status = "play"
+					const speed = event.options.speed
 		
 					self.log("info", `Action Play: ${serviceUrl}/servers/${serverId}/outputs/${outputId}` )
 					self.log("info", `Action Play: Status ${status} Speed: ${speed}` )
@@ -107,7 +107,7 @@ module.exports = {
 						lock.enable()
 
 						body = { "status" : status, "speed": speed }
-						var response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
+						const response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
 						self.log("info", `Play response ${response.status}` )
 
 						lock.disable()
@@ -134,18 +134,18 @@ module.exports = {
 					},
 				],
 				callback: async (event) => {
-					var serviceUrl = self.config.serviceUrl
-					var serverId = self.config.serverId
+					const serviceUrl = self.config.serviceUrl
+					const serverId = self.config.serverId
 		
-					var outputId = event.options.outputId
-					var status = "stop"
+					const outputId = event.options.outputId
+					const status = "stop"
 		
 					self.log("info", `Action Status: ${serviceUrl}/servers/${serverId}/outputs/${outputId}` )
 					self.log("info", `Action Status: Status ${status} ` )
 		
 					try {
 						body = { "status" : status }
-//						var response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
+//						const response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
 					}
 					catch (err)
 					{
@@ -174,18 +174,18 @@ module.exports = {
 					},
 			],
 				callback: async (event) => {
-					var serviceUrl = self.config.serviceUrl
-					var serverId = self.config.serverId
+					const serviceUrl = self.config.serviceUrl
+					const serverId = self.config.serverId
 		
-					var outputId = event.options.outputId
-					var status = "stop"
+					const outputId = event.options.outputId
+					const status = "stop"
 		
 					self.log("info", `Action Status: ${serviceUrl}/servers/${serverId}/outputs/${outputId}` )
 					self.log("info", `Action Status: Status ${status} ` )
 		
 					try {
 						body = { "status" : status }
-//						var response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
+//						const response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
 					}
 					catch (err)
 					{
@@ -212,18 +212,18 @@ module.exports = {
 					},
 				],
 				callback: async (event) => {
-					var serviceUrl = self.config.serviceUrl
-					var serverId = self.config.serverId
+					const serviceUrl = self.config.serviceUrl
+					const serverId = self.config.serverId
 		
-					var outputId = event.options.outputId
-					var status = "stop"
+					const outputId = event.options.outputId
+					const status = "stop"
 		
 					self.log("info", `Action Status: ${serviceUrl}/servers/${serverId}/outputs/${outputId}` )
 					self.log("info", `Action Status: Status ${status} ` )
 		
 					try {
 						body = { "status" : status }
-//						var response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
+//						const response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
 					}
 					catch (err)
 					{
@@ -250,18 +250,18 @@ module.exports = {
 					},
 				],
 				callback: async (event) => {
-					var serviceUrl = self.config.serviceUrl
-					var serverId = self.config.serverId
+					const serviceUrl = self.config.serviceUrl
+					const serverId = self.config.serverId
 		
-					var outputId = event.options.outputId
-					var status = "stop"
+					const outputId = event.options.outputId
+					const status = "stop"
 		
 					self.log("info", `Action Status: ${serviceUrl}/servers/${serverId}/outputs/${outputId}` )
 					self.log("info", `Action Status: Status ${status} ` )
 		
 					try {
 						body = { "status" : status }
-//						var response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
+//						const response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
 					}
 					catch (err)
 					{
@@ -294,16 +294,16 @@ module.exports = {
 					},
 				],
 				callback: async (event) => {
-					var serviceUrl = self.config.serviceUrl
-					var serverId = self.config.serverId
+					const serviceUrl = self.config.serviceUrl
+					const serverId = self.config.serverId
 
-					var inputId = event.options.inputId
+					const inputId = event.options.inputId
 
 					self.log("info", `Action Status: ${serviceUrl}/servers/${serverId}/inputs/${inputId}` )
 
 					try {
 						body = { "status" : "record" }
-//						var response = await axios.patch(`${serviceUrl}/servers/${serverId}/inputs/${inputId}`, body)
+//						const response = await axios.patch(`${serviceUrl}/servers/${serverId}/inputs/${inputId}`, body)
 					}
 					catch (err)
 					{

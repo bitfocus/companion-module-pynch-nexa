@@ -5,7 +5,7 @@ module.exports = {
 
 	initFeedbacks: function (self) {
 
-		var outputChoices = []
+		const outputChoices = []
 		self.outputs.forEach(output => {
 			outputChoices.push({ id: output.id, label: output.id})
 		});

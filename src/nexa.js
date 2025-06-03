@@ -20,14 +20,21 @@ module.exports = {
 			try {
 				self.log('info', `connecting to nexa landingPage on uri: ${serviceUrl}`);
 
+				let dataUri = ""
 				var request = serviceUrl
 				self.log("debug", `Request ${request}`)
 				var response = await axios.get(`${serviceUrl}`)
 				{
-					var dataUri = self.getUriFromLinkHeader(response, "collection")
+					dataUri = self.getUriFromLinkHeader(response, "collection")
 					self.log("debug", `uri to servers ${dataUri}`)
 				};
 	
+				let clipsUri     = ""
+				let playlistsUri = ""
+				let outputsUri   = ""
+				let inputsUri    = ""
+				let eventsUri    = ""
+
 				request = `${dataUri}/${serverId}`
 				self.log("debug", `Request ${request}`)
 				var response = await axios.get(request)
@@ -51,17 +58,17 @@ module.exports = {
 						'inputCount': response.data.inputCount,
 					})
 
-					var clipsUri   = self.getUriFromLinkHeader(response, "clips")
-					var playlistsUri   = self.getUriFromLinkHeader(response, "playlists")
-					var outputsUri = self.getUriFromLinkHeader(response, "outputs")
-					var inputsUri = self.getUriFromLinkHeader(response, "inputs")
+					clipsUri     = self.getUriFromLinkHeader(response, "clips")
+					playlistsUri = self.getUriFromLinkHeader(response, "playlists")
+					outputsUri   = self.getUriFromLinkHeader(response, "outputs")
+					inputsUri    = self.getUriFromLinkHeader(response, "inputs")
 	
 					self.log("debug", `uri to clips ${clipsUri}`)
 					self.log("debug", `uri to playlists ${playlistsUri}`)
 					self.log("debug", `uri to outputs ${outputsUri}`)
 					self.log("debug", `uri to inputs ${inputsUri}`)
 
-					var eventsUri = self.getUriFromLinkHeader(response, "events")
+					eventsUri = self.getUriFromLinkHeader(response, "events")
 					self.log("debug", `uri to events ${eventsUri}`)
 				}
 	
@@ -70,7 +77,7 @@ module.exports = {
 					self.log("debug", `Request ${request}`)
 					var response = await axios.get(eventsUri)
 					{
-						var subscribeUri = self.getUriFromEvents(response.data.events, "ws")
+						const subscribeUri = self.getUriFromEvents(response.data.events, "ws")
 						self.log("debug", `uri to subscribe ${subscribeUri}`)
 
 						self.initEvents(subscribeUri)

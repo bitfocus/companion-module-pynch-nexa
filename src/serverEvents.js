@@ -15,8 +15,8 @@ async function initEvents (subscribeUri)
     {
 //        self.log("debug", `[message] ${event.data}`)
 
-        var content = JSON.parse(event.data)
-        var server = content.server
+        const content = JSON.parse(event.data)
+        const server = content.server
 
         if (Object.keys(content).length === 0)
             return // alive message
@@ -37,14 +37,14 @@ async function initEvents (subscribeUri)
             switch (topic.name)
             {
                 case "clips":
-                    var needsUpdate = false;
+                    let needsUpdate = false;
                     switch (action)
                     {
                         case 'add':
                             for (const clip of data)
                             {
                                 self.log("debug", `add ======> ${clip.id}` )
-                                var index = choices.clipChoices.findIndex((item) => item.id == clip.id)
+                                let index = choices.clipChoices.findIndex((item) => item.id == clip.id)
                                 if (index < 0) {
                                     choices.clipChoices.push(clip.id)
                                     needsUpdate = true
@@ -55,7 +55,7 @@ async function initEvents (subscribeUri)
                             for (const clip of data)
                             {
                                 self.log("debug", `remove ======> ${clip.id}` )
-                                var index = choices.clipChoices.findIndex((item) => item.id == clip.id)
+                                let index = choices.clipChoices.findIndex((item) => item.id == clip.id)
                                 if (index >= 0) {
                                     choices.clipChoices.splice(index, 1)
                                     needsUpdate = true
