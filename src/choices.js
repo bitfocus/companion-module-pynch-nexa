@@ -13,4 +13,6 @@ export const outputChoices = []
 export const inputChoices = []
 
 export const clipChoices = []
+clipChoices.push({ id: "", label: ""})
 export const playlistChoices = []
+playlistChoices.push({ id: "", label: ""})
