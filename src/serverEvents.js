@@ -34,11 +34,11 @@ async function initEvents (subscribeUri)
                 return;
             }
 
-            switch (topic.name)
+            switch (topic.name.toLowerCase())
             {
                 case "clips":
                     let needsUpdate = false;
-                    switch (action)
+                    switch (action.toLowerCase())
                     {
                         case 'add':
                             for (const clip of data)
@@ -77,10 +77,12 @@ async function initEvents (subscribeUri)
                     break
 
                 case "output":
-                    switch (action)
+                    switch (action.toLowerCase())
                     {
                         case 'change':
-                            switch (data.state)
+                            if (data.state === undefined) return;
+
+                            switch (data.state.toLowerCase())
                             {
                                 case "play":
                                 case "playing":
