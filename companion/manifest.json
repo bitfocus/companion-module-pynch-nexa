@@ -3,7 +3,7 @@
 	"name": "pynch-nexa",
 	"shortname": "nexa",
 	"description": "Module to control AV servers (EVS XT's). Requires a Nexa service (Windows only). See help for more info.",
-	"version": "1.10.3",
+	"version": "1.10.4",
 	"license": "MIT",
 	"repository": "git+https://github.com/bitfocus/companion-module-pynch-nexa.git",
 	"bugs": "https://github.com/bitfocus/companion-module-pynch-nexa/issues",
