@@ -33,11 +33,9 @@ module.exports = {
 						default: choices.outputChoices[0].id,
 					},
 					{
-						type: 'dropdown',
-						label: 'Clip',
+						type: 'textinput',
+						label: 'Clip Id',
 						id: 'clipId',
-						choices: choices.clipChoices,
-						default: choices.clipChoices[0].id,
 					},
 				],
 				callback: async (event) => {
@@ -48,8 +46,8 @@ module.exports = {
 					const outputId = event.options.outputId
 					const clipId = event.options.clipId
 
-					self.log("info", `Action Load: ${serviceUrl}/servers/${serverId}/outputs/${outputId}` )
-					self.log("info", `Action Load: clipId ${clipId}` )
+					self.log("info", `Action Load Ur i: ${serviceUrl}/servers/${serverId}/outputs/${outputId}` )
+					self.log("info", `Action Load Body: clipId ${clipId}` )
 
 					try {
 						await lock.promise
@@ -262,6 +260,103 @@ module.exports = {
 					try {
 						body = { "status" : status }
 //						const response = await axios.patch(`${serviceUrl}/servers/${serverId}/outputs/${outputId}`, body)
+					}
+					catch (err)
+					{
+						console.log(err)
+					}
+				},
+			},
+
+			actions['osdEnable'] = {
+				name: 'OSD Enable',
+				description: 'Turn on or off the OSD of the Output',
+				options: [
+					{
+						type: 'dropdown',
+						label: 'Output',
+						id: 'outputId',
+						choices: choices.outputChoices,
+						default: choices.outputChoices[0].id,
+					},
+					{
+						type: 'checkbox',
+						label: 'Enable',
+						id: 'enable',
+						default: true,
+					}
+				],
+				callback: async (event) => {
+					const serviceUrl = self.config.serviceUrl
+					const serverId = self.config.serverId
+		
+					const outputId = event.options.outputId
+					const enable = event.options.enable
+		
+					self.log("info", `Action Status: ${serviceUrl}/servers/${serverId}/outputs/${outputId}/osd` )
+		
+					try {
+						await lock.promise
+						lock.enable()
+
+						body = { "osd": enable }
+						const response = await axios.put(`${serviceUrl}/servers/${serverId}/outputs/${outputId}/osd`, body)
+						self.log("info", `Load response ${response.status}` )
+
+						lock.disable()
+					}
+					catch (err)
+					{
+						console.log(err)
+					}
+				},
+			}
+
+			actions['osd'] = {
+				name: 'OSD Set Line',
+				description: 'Display a Line on the OSD of the Output',
+				options: [
+					{
+						type: 'dropdown',
+						label: 'Output',
+						id: 'outputId',
+						choices: choices.outputChoices,
+						default: choices.outputChoices[0].id,
+					},
+					{
+						type: 'number',
+						label: 'LineNr',
+						id: 'lineNr',
+						default: 11,
+						min: 0,
+						max: 11
+					},
+					{
+						type: 'textinput',
+						label: 'Value',
+						id: 'value',
+						default: ""
+					},
+				],
+				callback: async (event) => {
+					const serviceUrl = self.config.serviceUrl
+					const serverId = self.config.serverId
+		
+					const outputId = event.options.outputId
+					const lineNr = event.options.lineNr
+					const value = event.options.value
+		
+					self.log("info", `Action Status: ${serviceUrl}/servers/${serverId}/outputs/${outputId}/osd/lines/${lineNr}` )
+		
+					try {
+						await lock.promise
+						lock.enable()
+
+						body = { "line" : value }
+						const response = await axios.put(`${serviceUrl}/servers/${serverId}/outputs/${outputId}/osd/lines/${lineNr}`, body)
+						self.log("info", `Load response ${response.status}` )
+
+						lock.disable()
 					}
 					catch (err)
 					{
